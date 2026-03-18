@@ -1,0 +1,50 @@
+* {
+  padding: 0px;
+  margin: 0px;
+}
+
+main {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+}
+
+div {
+  flex: 1;
+  border: 5px solid black;
+}
+
+h2 {
+  text-align: center;
+}
+
+.numero {
+  width: 90%;
+  text-align: center;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+tr:nth-child(even) {
+  background-color: rgb(102, 102, 102);
+}
+
+td {
+  border: 1px solid black;
+  padding: 8px;
+}
+
+.positivo {
+  background-color: #d4edda;
+  color: #155724;
+  font-weight: bold;
+}
+
+.negativo {
+  background-color: #f8d7da;
+  color: #721c24;
+  font-weight: bold;
+}
