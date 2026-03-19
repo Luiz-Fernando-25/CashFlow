@@ -3,35 +3,97 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Finances</title>
+    <title>CashFlow</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <header>
+      <div id="cabecalhoAno">
+        <button id="btnAno"></button>
+      </div>
+      <div id="cabecalhoMes">
+        <button id="btnMes"></button>
+      </div>
+    </header>
     <main>
       <div>
-        <h2>Entrada</h2>
-        <input type="number" class="numero" id="entrada" />
-        <input type="button" onclick="addEntrada()" value="submit" />
-        <h2 id="totalEntrada"></h2>
-        <table>
-          <tbody id="tEntrada"></tbody>
-        </table>
+        <h2>Lançamento</h2>
+        <form id="transacaoForm">
+          <input type="text" id="descricao" placeholder="Descrição" required />
+          <input
+            type="text"
+            id="valor"
+            placeholder="R$ 0,00"
+            oninput="mascaraMoeda(this)"
+            required
+          />
+          <input type="date" id="data" />
+
+          <select id="tipo">
+            <option value="entrada">Entrada</option>
+            <option value="saida">Saída</option>
+          </select>
+
+          <select id="categoria">
+            <option value="Alimentação">Alimentação</option>
+            <option value="Lazer">Lazer</option>
+            <option value="Salario">Salário</option>
+          </select>
+
+          <button type="submit">Adicionar</button>
+        </form>
+        <input type="button" onclick="reset()" value="reset" />
       </div>
+
       <div>
-        <h2>Saida</h2>
-        <input type="number" class="numero" id="saida" />
-        <input type="button" onclick="addSaida()" value="submit" />
-        <h2 id="totalSaida"></h2>
-        <table>
-          <tbody id="tSaida"></tbody>
-        </table>
+        <div class="filtro">
+          <h2>Entrada</h2>
+          <h3 id="totalEntrada"></h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Descrição</th>
+                <th>Valor</th>
+                <th>Data</th>
+                <th>Tipo</th>
+                <th>Categoria</th>
+              </tr>
+            </thead>
+            <tbody id="tEntrada"></tbody>
+          </table>
+        </div>
+        <div class="filtro">
+          <h2>Saída</h2>
+          <h3 id="totalSaida"></h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Descrição</th>
+                <th>Valor</th>
+                <th>Data</th>
+                <th>Tipo</th>
+                <th>Categoria</th>
+              </tr>
+            </thead>
+            <tbody id="tSaida"></tbody>
+          </table>
+        </div>
       </div>
+
       <div>
         <h2>Total</h2>
-        <input type="button" onclick="reset()" value="reset" />
-        <h2 id="totalLancamento"></h2>
+        <h3 id="totalLancamento"></h3>
         <table>
-          <tbody id="tLancamentos"></tbody>
+          <thead>
+            <tr>
+              <th>Descrição</th>
+              <th>Valor</th>
+              <th>Data</th>
+              <th>Tipo</th>
+              <th>Categoria</th>
+            </tr>
+          </thead>
+          <tbody id="tLancamento"></tbody>
         </table>
       </div>
     </main>

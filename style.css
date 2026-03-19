@@ -2,24 +2,47 @@
   padding: 0px;
   margin: 0px;
 }
+header {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  gap: 10px;
+  height: 10vh;
+}
+
+header > div {
+  display: flex;
+  justify-content: center;
+  border: none;
+  gap: 10px;
+}
+
+header > div > button {
+  width: 100px;
+}
 
 main {
   display: flex;
   width: 100%;
-  height: 100vh;
+  height: 90vh;
 }
 
-div {
+main > div {
   flex: 1;
   border: 5px solid black;
+  overflow-y: auto;
+  padding: 10px;
 }
 
-h2 {
-  text-align: center;
+div.filtro {
+  height: 48.5%;
+  overflow-y: auto;
+  margin-bottom: 10px;
 }
 
-.numero {
-  width: 90%;
+h2,
+h3 {
   text-align: center;
 }
 
@@ -28,22 +51,28 @@ table {
   border-collapse: collapse;
 }
 
-tr:nth-child(even) {
-  background-color: rgb(102, 102, 102);
+thead {
+  background-color: black;
+  color: white;
 }
 
-td {
+tr:nth-child(even) {
+  background-color: rgba(102, 102, 102, 0.13);
+}
+
+td,
+th {
   border: 1px solid black;
   padding: 8px;
 }
 
-.positivo {
+.entrada {
   background-color: #d4edda;
   color: #155724;
   font-weight: bold;
 }
 
-.negativo {
+.saida {
   background-color: #f8d7da;
   color: #721c24;
   font-weight: bold;
