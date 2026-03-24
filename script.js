@@ -95,23 +95,30 @@ function somaTotal(lista) {
 }
 
 function gerarLinhasTabela(lista) {
-  return lista
-    .map((item) => {
-      const valorFormatado = formatarMoeda(item.valor);
-      const classCor = item.tipo;
+  return (
+    `<li class="tCabecalho"><span>Descrição</span><span>Valor</span></li>` +
+    lista
+      .map((item) => {
+        const valorFormatado = formatarMoeda(item.valor);
+        const classCor = item.tipo;
 
-      return `
-    <tr class="${classCor}">
-      <td>${item.descricao}</td>
-      <td>${valorFormatado}</td>
-      <td>${item.data}</td>
-      <td>${item.tipo}</td>
-      <td>${item.categoria}</td>
-      <td><button onclick="removerItem(${item.id})">X</button></td>
-      </tr>
+        return `
+      
+    <li class="${classCor}">
+      <div><span>${item.descricao}</span></div>
+      <div>
+        <span>${formatarData(item)}</span>
+        <span>${item.categoria}</span>
+      </div>
+      <div class="tAcao">
+        <span>${valorFormatado}</span>
+        <td><button onclick="removerItem(${item.id})" class="btn-fechar">&times</button></td>
+      </div>
+      </li>
   `;
-    })
-    .join("");
+      })
+      .join("")
+  );
 }
 
 function removerItem(idParaRemover) {
@@ -127,7 +134,10 @@ function mascaraMoeda(input) {
 
   valor = valor.replace(/\D/g, "");
 
-  valor = formatarMoeda(valor / 100);
+  valor = (valor / 100).toLocaleString("pt-br", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
 
   input.value = valor;
 }
@@ -140,6 +150,11 @@ function filtrarMes(item) {
 function filtrarAno(item) {
   const dataObj = new Date(item.data);
   return dataObj.getFullYear() === Number(anoCentro);
+}
+
+function formatarData(item) {
+  const dataObj = new Date(item.data);
+  return `${dataObj.getDate() + 1}/${dataObj.getMonth() + 1}`;
 }
 
 function atualizarFiltro() {
@@ -179,7 +194,7 @@ let mesCentro = mesFiltro.dataset.mes;
 function renderizarBotoesAno(anoFoco) {
   menuFiltroAno.innerHTML = "";
 
-  const offsets = [-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6];
+  const offsets = [-2, -1, 0, 1, 2];
 
   offsets.forEach((offset) => {
     const ano = parseInt(anoFoco) + offset;
@@ -187,7 +202,10 @@ function renderizarBotoesAno(anoFoco) {
     btn.innerText = ano;
     btn.dataset.ano = ano;
 
-    if (offset == 0) btn.style.fontWeight = "bold";
+    if (offset == 0) {
+      btn.style.fontWeight = "bold";
+      btn.style.backgroundColor = "#4ec2db";
+    }
 
     menuFiltroAno.appendChild(btn);
   });
@@ -196,7 +214,7 @@ function renderizarBotoesAno(anoFoco) {
 function renderizarBotoesMes(mesFoco) {
   menuFiltroMes.innerHTML = "";
 
-  const offsets = [-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5];
+  const offsets = [-2, -1, 0, 1, 2];
 
   offsets.forEach((offset) => {
     const mes = (parseInt(mesFoco) + offset + 12) % 12;
@@ -204,7 +222,10 @@ function renderizarBotoesMes(mesFoco) {
     btn.innerText = convertMes(mes);
     btn.dataset.mes = mes;
 
-    if (offset == 0) btn.style.fontWeight = "bold";
+    if (offset == 0) {
+      btn.style.fontWeight = "bold";
+      btn.style.backgroundColor = "#4ec2db";
+    }
 
     menuFiltroMes.appendChild(btn);
   });

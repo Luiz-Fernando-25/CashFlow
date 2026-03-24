@@ -3,31 +3,55 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="img/ico_t.ico" type="image/x-icon" />
     <title>CashFlow</title>
     <link rel="stylesheet" href="style.css" />
   </head>
+
   <body>
     <header>
-      <div id="cabecalhoAno">
-        <button id="btnAno"></button>
+      <div class="head-logo">
+        <img src="img/logo.jpg" alt="" />
       </div>
-      <div id="cabecalhoMes">
-        <button id="btnMes"></button>
+      <div class="head-filtro">
+        <div id="cabecalhoAno">
+          <button id="btnAno"></button>
+        </div>
+        <div id="cabecalhoMes">
+          <button id="btnMes"></button>
+        </div>
+      </div>
+      <div class="head-extra">
+        <input type="button" onclick="reset()" value="reset" />
       </div>
     </header>
     <main>
-      <div>
+      <div class="card">
         <h2>Lançamento</h2>
         <form id="transacaoForm">
-          <input type="text" id="descricao" placeholder="Descrição" required />
-          <input
-            type="text"
-            id="valor"
-            placeholder="R$ 0,00"
-            oninput="mascaraMoeda(this)"
-            required
-          />
-          <input type="date" id="data" />
+          <div>
+            <label for="descricao">Descrição</label>
+            <textarea
+              name="descricao"
+              id="descricao"
+              placeholder="Descrição"
+              required
+            ></textarea>
+          </div>
+          <div class="valor">
+            <span>R$:</span>
+            <input
+              type="text"
+              id="valor"
+              placeholder="0,00"
+              oninput="mascaraMoeda(this)"
+              required
+            />
+          </div>
+          <div>
+            <label for="data">Data</label>
+            <input type="date" id="data" />
+          </div>
 
           <select id="tipo">
             <option value="entrada">Entrada</option>
@@ -42,59 +66,37 @@
 
           <button type="submit">Adicionar</button>
         </form>
-        <input type="button" onclick="reset()" value="reset" />
       </div>
 
-      <div>
+      <div class="card">
         <div class="filtro">
-          <h2>Entrada</h2>
-          <h3 id="totalEntrada"></h3>
-          <table>
-            <thead>
-              <tr>
-                <th>Descrição</th>
-                <th>Valor</th>
-                <th>Data</th>
-                <th>Tipo</th>
-                <th>Categoria</th>
-              </tr>
-            </thead>
-            <tbody id="tEntrada"></tbody>
-          </table>
+          <div class="valor-total">
+            <h2>Entrada</h2>
+            <h2 id="totalEntrada"></h2>
+          </div>
+          <ul id="tEntrada">
+            <li><span>Descrição</span><span>Valor</span></li>
+          </ul>
         </div>
         <div class="filtro">
-          <h2>Saída</h2>
-          <h3 id="totalSaida"></h3>
-          <table>
-            <thead>
-              <tr>
-                <th>Descrição</th>
-                <th>Valor</th>
-                <th>Data</th>
-                <th>Tipo</th>
-                <th>Categoria</th>
-              </tr>
-            </thead>
-            <tbody id="tSaida"></tbody>
-          </table>
+          <div class="valor-total">
+            <h2>Saída</h2>
+            <h2 id="totalSaida"></h2>
+          </div>
+          <ul id="tSaida">
+            <li><span>Descrição</span><span>Valor</span></li>
+          </ul>
         </div>
       </div>
 
-      <div>
-        <h2>Total</h2>
-        <h3 id="totalLancamento"></h3>
-        <table>
-          <thead>
-            <tr>
-              <th>Descrição</th>
-              <th>Valor</th>
-              <th>Data</th>
-              <th>Tipo</th>
-              <th>Categoria</th>
-            </tr>
-          </thead>
-          <tbody id="tLancamento"></tbody>
-        </table>
+      <div class="card">
+        <div class="valor-total">
+          <h2>Total</h2>
+          <h2 id="totalLancamento"></h2>
+        </div>
+        <ul id="tLancamento">
+          <li><span>Descrição</span><span>Valor</span></li>
+        </ul>
       </div>
     </main>
     <script src="script.js"></script>
