@@ -78,7 +78,7 @@ function atualizarTela() {
   );
 
   const linhasTabelaTotal = gerarLinhasTabela(listaAtual);
-  const resultadoTotal = somaTotal(listaAtual);
+  const resultadoTotal = resultadoEntrada - resultadoSaida;
 
   tabelaEntrada.innerHTML = linhasTabelaEntrada;
   totalEntrada.innerText = formatarMoeda(resultadoEntrada);
